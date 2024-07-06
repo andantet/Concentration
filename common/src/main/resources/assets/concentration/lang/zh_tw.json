@@ -1,0 +1,13 @@
+{
+  "concentration.config.customization.enabled": "啟用客製化",
+  "concentration.config.customization.related": "顯示器相對座標",
+  "concentration.config.customization.x": "X 座標",
+  "concentration.config.customization.y": "Y 座標",
+  "concentration.config.customization.width": "寬度",
+  "concentration.config.customization.height": "高度",
+  "concentration.option.apply": "套用",
+  "concentration.option.fullscreen_mode": "全螢幕模式",
+  "concentration.option.fullscreen_mode.tooltip": "全螢幕模式決定了全螢幕功能要使用無邊框全螢幕還是原生全螢幕。",
+  "concentration.option.fullscreen_mode.borderless": "無邊框",
+  "concentration.option.fullscreen_mode.native": "原生"
+}
