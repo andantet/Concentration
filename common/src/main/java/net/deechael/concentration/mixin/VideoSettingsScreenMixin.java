@@ -71,11 +71,11 @@ public abstract class VideoSettingsScreenMixin extends OptionsSubScreen {
 
     @Unique
     private static OptionInstance<FullscreenMode> concentration$FullscreenMode(Options options) {
-        return new OptionInstance<FullscreenMode>(
+        return new OptionInstance<>(
                 "concentration.option.fullscreen_mode",
                 OptionInstance.noTooltip(),
                 OptionInstance.forOptionEnum(),
-                new OptionInstance.Enum(Arrays.asList(FullscreenMode.values()), HumanoidArm.CODEC),
+                new OptionInstance.Enum<>(Arrays.asList(FullscreenMode.values()), FullscreenMode.CODEC),
                 ConfigProvider.INSTANCE.ensureLoaded().getFullscreenMode(),
                 fullscreenMode -> {
                     ConfigProvider.INSTANCE.ensureLoaded().setFullscreenMode(fullscreenMode);
