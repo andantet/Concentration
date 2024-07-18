@@ -29,8 +29,6 @@ public class ConcentrationNeoForge {
     public ConcentrationNeoForge(IEventBus eventBus) {
         Concentration.init();
 
-        ConcentrationConfigNeoForge.ensureLoaded();
-
         if (ModList.get().isLoaded("embeddium")) {
             EmbeddiumCompat.init();
         }

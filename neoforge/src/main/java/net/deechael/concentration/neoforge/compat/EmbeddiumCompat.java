@@ -35,14 +35,14 @@ public class EmbeddiumCompat {
                                         Component.translatable("concentration.option.fullscreen_mode.native")
                                 }))
                                 .setBinding((vanillaOpts, value) -> {
-                                            ConcentrationConfigNeoForge.FULLSCREEN.set(value);
-                                            ConcentrationConfigNeoForge.SPECS.save();
+                                            ConcentrationConfigNeoForge.ensureLoaded().setFullscreenMode(value);
+                                            ConcentrationConfigNeoForge.ensureLoaded().save();
                                             if (vanillaOpts.fullscreen().get()) {
                                                 // If fullscreen turns on, re-toggle to changing the fullscreen mode instantly
                                                 Concentration.toggleFullScreenMode(vanillaOpts, true);
                                             }
                                         },
-                                        (vanillaOpts) -> ConcentrationConfigNeoForge.FULLSCREEN.get()
+                                        (vanillaOpts) -> ConcentrationConfigNeoForge.ensureLoaded().getFullscreenMode()
                                 )
                                 .build());
                         options.set(
