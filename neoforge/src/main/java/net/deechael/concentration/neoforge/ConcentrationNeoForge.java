@@ -11,9 +11,11 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import org.jetbrains.annotations.NotNull;
@@ -26,8 +28,10 @@ import org.jetbrains.annotations.NotNull;
 @Mod(value = ConcentrationConstants.MOD_ID, dist = Dist.CLIENT)
 public class ConcentrationNeoForge {
 
-    public ConcentrationNeoForge(IEventBus eventBus) {
+    public ConcentrationNeoForge(ModContainer container, IEventBus eventBus) {
         Concentration.init();
+
+        container.registerConfig(ModConfig.Type.CLIENT, ConcentrationConfigNeoForge.SPECS, "concentration-client.toml");
 
         if (ModList.get().isLoaded("embeddium")) {
             EmbeddiumCompat.init();

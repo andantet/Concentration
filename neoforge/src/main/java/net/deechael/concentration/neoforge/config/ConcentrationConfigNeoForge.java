@@ -51,7 +51,7 @@ public final class ConcentrationConfigNeoForge implements Config {
         SPECS = builder.build();
     }
 
-    public static ConcentrationConfigNeoForge ensureLoaded() {
+    public static ConcentrationConfigNeoForge ensureLoaded() {/*
         if (!loaded) {
             ConcentrationConstants.LOGGER.info("Loading Concentration Config");
 
@@ -62,10 +62,9 @@ public final class ConcentrationConfigNeoForge implements Config {
                     .writingMode(WritingMode.REPLACE)
                     .build();
             config.load();
-            SPECS.setConfig(config);
 
             loaded = true;
-        }
+        }*/
         return INSTANCE;
     }
 
