@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
  * Make fullscreen shortcut follow Concentration function
+ *
  * @author DeeChael
  */
 @Mixin(KeyboardHandler.class)
@@ -24,7 +25,8 @@ public class KeyboardHandlerMixin {
     @Inject(method = "keyPress", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/platform/Window;toggleFullScreen()V"), cancellable = true)
     public void redirect$handleFullScreenToggle(long pWindowPointer, int pKey, int pScanCode, int pAction, int pModifiers, CallbackInfo ci) {
         Concentration.toggleFullScreenMode(minecraft.options, !minecraft.options.fullscreen().get());
-        ci.cancel();
+        minecraft.options.save(); // Only keyboard shortcut needs save manually because shortcut won't automatically save
+        ci.cancel(); // Stop the original toggling function
     }
 
 }

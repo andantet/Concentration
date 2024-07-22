@@ -10,6 +10,7 @@ import java.util.Set;
 
 /**
  * Mixin plugin to make sure that sodium support only turned on when sodium installed
+ *
  * @author DeeChael
  */
 public class ConcentrationFabricMixinPlugin implements IMixinConfigPlugin {
@@ -25,8 +26,13 @@ public class ConcentrationFabricMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        return "net.deechael.concentration.fabric.mixin.SodiumVideoOptionsScreenMixin".equals(mixinClassName)
-                && FabricLoader.getInstance().isModLoaded("sodium") && !FabricLoader.getInstance().isModLoaded("embeddium");
+        if (FabricLoader.getInstance().isModLoaded("vulkanmod")) {
+            return mixinClassName.equals("net.deechael.concentration.fabric.mixin.VulkanWindowMixin") ||
+                    mixinClassName.equals("net.deechael.concentration.fabric.mixin.OptionsMixin") ||
+                    mixinClassName.equals("net.deechael.concentration.fabric.mixin.GLFWMixin");
+        } else {
+            return checkSodium(mixinClassName) || mixinClassName.equals("net.deechael.concentration.fabric.mixin.WindowMixin");
+        }
     }
 
     @Override
@@ -44,6 +50,12 @@ public class ConcentrationFabricMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public void postApply(String targetClassName, ClassNode targetClass, String mixinClassName, IMixinInfo mixinInfo) {
+    }
+
+    private static boolean checkSodium(String mixinClassName) {
+        return "net.deechael.concentration.fabric.mixin.SodiumVideoOptionsScreenMixin".equals(mixinClassName)
+                && FabricLoader.getInstance().isModLoaded("sodium")
+                && !FabricLoader.getInstance().isModLoaded("embeddium");
     }
 
 }

@@ -15,8 +15,9 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
 
-    modImplementation("org.embeddedt:embeddium-fabric-1.20.6:0.3.20-git-6d4c51a+mc1.20.6")
-    modImplementation "maven.modrinth:sodium:mc1.20.6-0.5.9"
+    modImplementation "maven.modrinth:modmenu:10.0.0-fabric,1.20.6"
+    modImplementation "maven.modrinth:embeddium:0.3.20+mc1.20.6-fabric,1.20.6"
+    modImplementation "maven.modrinth:vulkanmod:0.4.2-fabric,1.20.6"
 }
 
 loom {
