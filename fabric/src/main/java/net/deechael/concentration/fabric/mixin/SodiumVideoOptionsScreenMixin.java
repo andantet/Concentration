@@ -30,7 +30,7 @@ import java.util.List;
 @Mixin(SodiumGameOptionPages.class)
 public class SodiumVideoOptionsScreenMixin {
 
-    @Shadow
+    @Shadow(remap = false)
     @Final
     private static MinecraftOptionsStorage vanillaOpts;
 
