@@ -5,43 +5,34 @@ import net.deechael.concentration.ConcentrationConstants;
 import net.deechael.concentration.config.ConcentrationConfigScreen;
 import net.deechael.concentration.neoforge.compat.EmbeddiumCompat;
 import net.deechael.concentration.neoforge.config.ConcentrationConfigNeoForge;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.OptionInstance;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.ModList;
-import net.neoforged.fml.ModLoadingContext;
-import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.config.ModConfig;
-import net.neoforged.fml.loading.FMLEnvironment;
-import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
-import org.jetbrains.annotations.NotNull;
+import net.minecraftforge.client.ConfigScreenHandler;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModContainer;
+import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 
 /**
  * Mod entrance for NeoForge of Concentration
  *
  * @author DeeChael
  */
-@Mod(value = ConcentrationConstants.MOD_ID, dist = Dist.CLIENT)
-public class ConcentrationNeoForge {
+@Mod(value = ConcentrationConstants.MOD_ID)
+public class ConcentrationForge {
 
-    public ConcentrationNeoForge(ModContainer container, IEventBus eventBus) {
+    public ConcentrationForge(ModContainer container, IEventBus eventBus) {
         Concentration.init();
-
-        container.registerConfig(ModConfig.Type.CLIENT, ConcentrationConfigNeoForge.SPECS, "concentration-client.toml");
 
         if (ModList.get().isLoaded("embeddium")) {
             EmbeddiumCompat.init();
         }
 
         if (FMLEnvironment.dist.isClient()) {
-            ModLoadingContext.get().registerExtensionPoint(IConfigScreenFactory.class, () -> new IConfigScreenFactory() {
-                @Override
-                public @NotNull Screen createScreen(@NotNull Minecraft minecraft, @NotNull Screen parent) {
-                    return new ConcentrationConfigScreen(Component.literal(ConcentrationConstants.MOD_NAME), parent) {
+            ModLoadingContext.get().registerExtensionPoint(ConfigScreenHandler.ConfigScreenFactory.class, () -> new ConfigScreenHandler.ConfigScreenFactory(
+                    (minecraft, parent) -> new ConcentrationConfigScreen(Component.literal(ConcentrationConstants.MOD_NAME), parent) {
 
                         @Override
                         public void save() {
@@ -71,9 +62,8 @@ public class ConcentrationNeoForge {
                                     ConcentrationConfigNeoForge.HEIGHT,
                                     ConcentrationConfigNeoForge.HEIGHT::set);
                         }
-                    };
-                }
-            });
+                    }
+            ));
         }
     }
 

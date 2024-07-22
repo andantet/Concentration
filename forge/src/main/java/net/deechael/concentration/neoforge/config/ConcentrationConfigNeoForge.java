@@ -1,24 +1,32 @@
 package net.deechael.concentration.neoforge.config;
 
+import com.electronwill.nightconfig.core.file.CommentedFileConfig;
+import com.electronwill.nightconfig.core.io.WritingMode;
+import net.deechael.concentration.ConcentrationConstants;
 import net.deechael.concentration.FullscreenMode;
 import net.deechael.concentration.config.Config;
-import net.neoforged.neoforge.common.ModConfigSpec;
+import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.fml.loading.FMLPaths;
+
+import java.nio.file.Path;
 
 public final class ConcentrationConfigNeoForge implements Config {
 
     public final static ConcentrationConfigNeoForge INSTANCE = new ConcentrationConfigNeoForge();
 
-    public static final ModConfigSpec SPECS;
-    public static final ModConfigSpec.BooleanValue CUSTOMIZED;
-    public static final ModConfigSpec.BooleanValue RELATED;
-    public static final ModConfigSpec.IntValue X;
-    public static final ModConfigSpec.IntValue Y;
-    public static final ModConfigSpec.IntValue WIDTH;
-    public static final ModConfigSpec.IntValue HEIGHT;
-    public static final ModConfigSpec.EnumValue<FullscreenMode> FULLSCREEN;
+    public static final ForgeConfigSpec SPECS;
+    public static final ForgeConfigSpec.BooleanValue CUSTOMIZED;
+    public static final ForgeConfigSpec.BooleanValue RELATED;
+    public static final ForgeConfigSpec.IntValue X;
+    public static final ForgeConfigSpec.IntValue Y;
+    public static final ForgeConfigSpec.IntValue WIDTH;
+    public static final ForgeConfigSpec.IntValue HEIGHT;
+    public static final ForgeConfigSpec.EnumValue<FullscreenMode> FULLSCREEN;
+
+    private static boolean loaded = false;
 
     static {
-        ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
+        ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
 
         builder.push("concentration");
 
@@ -43,7 +51,7 @@ public final class ConcentrationConfigNeoForge implements Config {
         SPECS = builder.build();
     }
 
-    public static ConcentrationConfigNeoForge ensureLoaded() {/*
+    public static ConcentrationConfigNeoForge ensureLoaded() {
         if (!loaded) {
             ConcentrationConstants.LOGGER.info("Loading Concentration Config");
 
@@ -56,7 +64,7 @@ public final class ConcentrationConfigNeoForge implements Config {
             config.load();
 
             loaded = true;
-        }*/
+        }
         return INSTANCE;
     }
 

@@ -60,7 +60,7 @@ public abstract class ConcentrationConfigScreen extends Screen {
     private static class ConfigListWidget extends ContainerObjectSelectionList<ConfigListEntry> {
 
         public ConfigListWidget(Minecraft minecraftClient, int width, int height, int y, int itemHeight) {
-            super(minecraftClient, width, height, y, itemHeight);
+            super(minecraftClient, width, height, y, height, itemHeight);
         }
 
         @Override
@@ -131,9 +131,8 @@ public abstract class ConcentrationConfigScreen extends Screen {
     }
 
     @Override
-    public void renderBackground(@NotNull GuiGraphics context, int mouseX, int mouseY, float delta) {
-        // this.renderTransparentBackground(context);
-        super.renderBackground(context, mouseX, mouseY, delta);
+    public void renderBackground(@NotNull GuiGraphics graphics) {
+        super.renderBackground(graphics);
     }
 
     public abstract void addElements();
@@ -220,7 +219,7 @@ public abstract class ConcentrationConfigScreen extends Screen {
 
         public ConfigListTextField(Font textRenderer, int x, int y, int width, int height, Component description, Supplier<String> getter, Consumer<String> setter, Predicate<String> validator) {
             super(Collections.singletonList(makeField(textRenderer, x, y, width, height, description)));
-            this.textField = (EditBox) children().getFirst();
+            this.textField = (EditBox) children().get(0);
             this.textWidth = textRenderer.width(description);
             this.textRenderer = textRenderer;
             this.x = x;

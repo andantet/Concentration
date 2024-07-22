@@ -5,12 +5,11 @@ import net.deechael.concentration.FullscreenMode;
 import net.deechael.concentration.config.ConfigProvider;
 import net.minecraft.client.OptionInstance;
 import net.minecraft.client.Options;
+import net.minecraft.client.gui.screens.OptionsSubScreen;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.gui.screens.options.OptionsSubScreen;
-import net.minecraft.client.gui.screens.options.VideoSettingsScreen;
+import net.minecraft.client.gui.screens.VideoSettingsScreen;
 import net.minecraft.network.chat.Component;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -62,8 +61,7 @@ public abstract class VideoSettingsScreenMixin extends OptionsSubScreen {
                         options.fovEffectScale(),
                         options.showAutosaveIndicator(),
                         options.glintSpeed(),
-                        options.glintStrength(),
-                        options.menuBackgroundBlurriness()
+                        options.glintStrength()
                 }
         );
     }
@@ -91,8 +89,5 @@ public abstract class VideoSettingsScreenMixin extends OptionsSubScreen {
         // Don't put a constant to the second parameter, or else whatever fullscreen you are, when you open video settings page, the value shown is always the same
         return OptionInstance.createBoolean("options.fullscreen", options.fullscreen().get(), (value) -> Concentration.toggleFullScreenMode(options, value));
     }
-
-    @Shadow
-    protected abstract void addOptions();
 
 }
