@@ -1,8 +1,9 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "net.deechael.concentration.neoforge.mixin",
+  "package": "net.deechael.concentration.forge.mixin",
   "compatibilityLevel": "JAVA_17",
+  "refmap": "${mod_id}.refmap.json",
   "mixins": [],
   "client": [
     "WindowMixin"

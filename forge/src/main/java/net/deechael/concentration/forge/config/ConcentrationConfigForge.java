@@ -1,4 +1,4 @@
-package net.deechael.concentration.neoforge.config;
+package net.deechael.concentration.forge.config;
 
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.electronwill.nightconfig.core.io.WritingMode;
@@ -10,9 +10,9 @@ import net.minecraftforge.fml.loading.FMLPaths;
 
 import java.nio.file.Path;
 
-public final class ConcentrationConfigNeoForge implements Config {
+public final class ConcentrationConfigForge implements Config {
 
-    public final static ConcentrationConfigNeoForge INSTANCE = new ConcentrationConfigNeoForge();
+    public final static ConcentrationConfigForge INSTANCE = new ConcentrationConfigForge();
 
     public static final ForgeConfigSpec SPECS;
     public static final ForgeConfigSpec.BooleanValue CUSTOMIZED;
@@ -51,7 +51,7 @@ public final class ConcentrationConfigNeoForge implements Config {
         SPECS = builder.build();
     }
 
-    public static ConcentrationConfigNeoForge ensureLoaded() {
+    public static ConcentrationConfigForge ensureLoaded() {
         if (!loaded) {
             ConcentrationConstants.LOGGER.info("Loading Concentration Config");
 
@@ -63,12 +63,14 @@ public final class ConcentrationConfigNeoForge implements Config {
                     .build();
             config.load();
 
+            SPECS.setConfig(config);
+
             loaded = true;
         }
         return INSTANCE;
     }
 
-    private ConcentrationConfigNeoForge() {
+    private ConcentrationConfigForge() {
     }
 
     @Override

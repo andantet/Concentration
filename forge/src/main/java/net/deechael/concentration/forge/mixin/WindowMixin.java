@@ -1,4 +1,4 @@
-package net.deechael.concentration.neoforge.mixin;
+package net.deechael.concentration.forge.mixin;
 
 import com.mojang.blaze3d.platform.Monitor;
 import com.mojang.blaze3d.platform.ScreenManager;
@@ -6,7 +6,7 @@ import com.mojang.blaze3d.platform.VideoMode;
 import com.mojang.blaze3d.platform.Window;
 import net.deechael.concentration.ConcentrationConstants;
 import net.deechael.concentration.FullscreenMode;
-import net.deechael.concentration.neoforge.config.ConcentrationConfigNeoForge;
+import net.deechael.concentration.forge.config.ConcentrationConfigForge;
 import org.lwjgl.glfw.GLFW;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -105,7 +105,7 @@ public abstract class WindowMixin {
         int finalY;
 
         if (this.fullscreen) {
-            ConcentrationConfigNeoForge.ensureLoaded();
+            ConcentrationConfigForge.ensureLoaded();
 
             // If the game started with fullscreen mode, when switching to windowed mode, it will be forced to move to the primary monitor
             // Though size and position isn't be set at initialization, but I think the window should be at the initial monitor
@@ -117,7 +117,7 @@ public abstract class WindowMixin {
             this.concentration$cacheSizeLock = true;
             ConcentrationConstants.LOGGER.info("Locked size caching");
 
-            if (ConcentrationConfigNeoForge.FULLSCREEN.get() == FullscreenMode.NATIVE) {
+            if (ConcentrationConfigForge.FULLSCREEN.get() == FullscreenMode.NATIVE) {
                 ConcentrationConstants.LOGGER.info("Fullscreen mode is native, apply now!");
                 GLFW.glfwSetWindowMonitor(window, monitor, xpos, ypos, width, height, -1);
                 ConcentrationConstants.LOGGER.info("================= [Concentration End] =================");
@@ -135,12 +135,12 @@ public abstract class WindowMixin {
             GLFW.glfwSetWindowAttrib(window, GLFW.GLFW_DECORATED, GLFW.GLFW_FALSE);
             ConcentrationConstants.LOGGER.info("Trying to remove the title bar");
 
-            if (ConcentrationConfigNeoForge.CUSTOMIZED.get()) {
-                final boolean related = ConcentrationConfigNeoForge.RELATED.get();
-                final int configX = ConcentrationConfigNeoForge.X.get();
-                final int configY = ConcentrationConfigNeoForge.Y.get();
-                final int configWidth = ConcentrationConfigNeoForge.WIDTH.get();
-                final int configHeight = ConcentrationConfigNeoForge.HEIGHT.get();
+            if (ConcentrationConfigForge.CUSTOMIZED.get()) {
+                final boolean related = ConcentrationConfigForge.RELATED.get();
+                final int configX = ConcentrationConfigForge.X.get();
+                final int configY = ConcentrationConfigForge.Y.get();
+                final int configWidth = ConcentrationConfigForge.WIDTH.get();
+                final int configHeight = ConcentrationConfigForge.HEIGHT.get();
 
                 ConcentrationConstants.LOGGER.info("Customization enabled, so replace the fullscreen size with customized size");
 

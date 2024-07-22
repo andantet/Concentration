@@ -49,7 +49,7 @@ public abstract class ConcentrationConfigScreen extends Screen {
         addRenderableWidget(
                 Button.builder(CommonComponents.GUI_DONE, (button) -> {
                             save();
-                            this.minecraft.setScreen(parent);
+                            Minecraft.getInstance().setScreen(parent);
                         })
                         .pos(this.width / 2 + 25, this.height - 27)
                         .size(150, 20)
@@ -60,7 +60,7 @@ public abstract class ConcentrationConfigScreen extends Screen {
     private static class ConfigListWidget extends ContainerObjectSelectionList<ConfigListEntry> {
 
         public ConfigListWidget(Minecraft minecraftClient, int width, int height, int y, int itemHeight) {
-            super(minecraftClient, width, height, y, height, itemHeight);
+            super(minecraftClient, width, height, y, minecraftClient.getWindow().getGuiScaledHeight(), itemHeight);
         }
 
         @Override

@@ -1,15 +1,13 @@
-package net.deechael.concentration.neoforge;
+package net.deechael.concentration.forge;
 
 import net.deechael.concentration.Concentration;
 import net.deechael.concentration.ConcentrationConstants;
 import net.deechael.concentration.config.ConcentrationConfigScreen;
-import net.deechael.concentration.neoforge.compat.EmbeddiumCompat;
-import net.deechael.concentration.neoforge.config.ConcentrationConfigNeoForge;
+import net.deechael.concentration.forge.compat.EmbeddiumCompat;
+import net.deechael.concentration.forge.config.ConcentrationConfigForge;
 import net.minecraft.client.OptionInstance;
 import net.minecraft.network.chat.Component;
 import net.minecraftforge.client.ConfigScreenHandler;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.ModContainer;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -23,8 +21,10 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
 @Mod(value = ConcentrationConstants.MOD_ID)
 public class ConcentrationForge {
 
-    public ConcentrationForge(ModContainer container, IEventBus eventBus) {
+    public ConcentrationForge() {
         Concentration.init();
+
+        ConcentrationConfigForge.ensureLoaded();
 
         if (ModList.get().isLoaded("embeddium")) {
             EmbeddiumCompat.init();
@@ -36,31 +36,31 @@ public class ConcentrationForge {
 
                         @Override
                         public void save() {
-                            ConcentrationConfigNeoForge.SPECS.save();
+                            ConcentrationConfigForge.ensureLoaded().save();
                             Concentration.toggleFullScreenMode(minecraft.options, minecraft.options.fullscreen().get());
                         }
 
                         @Override
                         public void addElements() {
                             addOption(OptionInstance.createBoolean("concentration.config.customization.enabled",
-                                    ConcentrationConfigNeoForge.CUSTOMIZED.get(),
-                                    ConcentrationConfigNeoForge.CUSTOMIZED::set));
+                                    ConcentrationConfigForge.CUSTOMIZED.get(),
+                                    ConcentrationConfigForge.CUSTOMIZED::set));
                             addOption(OptionInstance.createBoolean("concentration.config.customization.related",
-                                    ConcentrationConfigNeoForge.RELATED.get(),
-                                    ConcentrationConfigNeoForge.RELATED::set));
+                                    ConcentrationConfigForge.RELATED.get(),
+                                    ConcentrationConfigForge.RELATED::set));
 
                             addIntField(Component.translatable("concentration.config.customization.x"),
-                                    ConcentrationConfigNeoForge.X,
-                                    ConcentrationConfigNeoForge.X::set);
+                                    ConcentrationConfigForge.X,
+                                    ConcentrationConfigForge.X::set);
                             addIntField(Component.translatable("concentration.config.customization.y"),
-                                    ConcentrationConfigNeoForge.Y,
-                                    ConcentrationConfigNeoForge.Y::set);
+                                    ConcentrationConfigForge.Y,
+                                    ConcentrationConfigForge.Y::set);
                             addIntField(Component.translatable("concentration.config.customization.width"),
-                                    ConcentrationConfigNeoForge.WIDTH,
-                                    ConcentrationConfigNeoForge.WIDTH::set);
+                                    ConcentrationConfigForge.WIDTH,
+                                    ConcentrationConfigForge.WIDTH::set);
                             addIntField(Component.translatable("concentration.config.customization.height"),
-                                    ConcentrationConfigNeoForge.HEIGHT,
-                                    ConcentrationConfigNeoForge.HEIGHT::set);
+                                    ConcentrationConfigForge.HEIGHT,
+                                    ConcentrationConfigForge.HEIGHT::set);
                         }
                     }
             ));

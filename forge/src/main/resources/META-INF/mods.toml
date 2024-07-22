@@ -1,29 +1,33 @@
 modLoader = "javafml"
 loaderVersion = "${forge_loader_version_range}"
 license = "${license}"
+
 [[mods]]
 modId = "${mod_id}"
 version = "${version}"
 displayName = "${mod_name}"
 logoFile = "${mod_id}.png"
-credits = "Thanks for this example mod goes to Java"
+credits = ""
 authors = "${mod_author}"
 description = '''${description}'''
+
 [[dependencies.${mod_id}]]
 modId = "forge"
 mandatory = true
 versionRange = "${forge_version_range}"
 ordering = "NONE"
 side = "BOTH"
+
 [[dependencies.${mod_id}]]
 modId = "minecraft"
 mandatory = true
 versionRange = "${minecraft_version_range}"
 ordering = "NONE"
 side = "BOTH"
+
 [[dependencies.${ mod_id }]]
 modId = "embeddium"
-type = "optional"
+mandatory = false
 versionRange = "[0,)"
 ordering = "NONE"
 side = "CLIENT"

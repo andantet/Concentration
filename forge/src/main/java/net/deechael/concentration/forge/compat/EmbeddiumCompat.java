@@ -1,4 +1,4 @@
-package net.deechael.concentration.neoforge.compat;
+package net.deechael.concentration.forge.compat;
 
 import me.jellysquid.mods.sodium.client.gui.SodiumGameOptionPages;
 import me.jellysquid.mods.sodium.client.gui.options.OptionImpl;
@@ -7,7 +7,7 @@ import me.jellysquid.mods.sodium.client.gui.options.control.TickBoxControl;
 import net.deechael.concentration.Concentration;
 import net.deechael.concentration.ConcentrationConstants;
 import net.deechael.concentration.FullscreenMode;
-import net.deechael.concentration.neoforge.config.ConcentrationConfigNeoForge;
+import net.deechael.concentration.forge.config.ConcentrationConfigForge;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import org.embeddedt.embeddium.api.OptionGroupConstructionEvent;
@@ -35,14 +35,14 @@ public class EmbeddiumCompat {
                                         Component.translatable("concentration.option.fullscreen_mode.native")
                                 }))
                                 .setBinding((vanillaOpts, value) -> {
-                                            ConcentrationConfigNeoForge.ensureLoaded().setFullscreenMode(value);
-                                            ConcentrationConfigNeoForge.ensureLoaded().save();
+                                            ConcentrationConfigForge.ensureLoaded().setFullscreenMode(value);
+                                            ConcentrationConfigForge.ensureLoaded().save();
                                             if (vanillaOpts.fullscreen().get()) {
                                                 // If fullscreen turns on, re-toggle to changing the fullscreen mode instantly
                                                 Concentration.toggleFullScreenMode(vanillaOpts, true);
                                             }
                                         },
-                                        (vanillaOpts) -> ConcentrationConfigNeoForge.ensureLoaded().getFullscreenMode()
+                                        (vanillaOpts) -> ConcentrationConfigForge.ensureLoaded().getFullscreenMode()
                                 )
                                 .build());
                         options.set(
