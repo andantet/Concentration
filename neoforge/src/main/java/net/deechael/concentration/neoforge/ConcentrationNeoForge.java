@@ -40,7 +40,7 @@ public class ConcentrationNeoForge {
         if (FMLEnvironment.dist.isClient()) {
             ModLoadingContext.get().registerExtensionPoint(IConfigScreenFactory.class, () -> new IConfigScreenFactory() {
                 @Override
-                public @NotNull Screen createScreen(@NotNull Minecraft minecraft, @NotNull Screen parent) {
+                public @NotNull Screen createScreen(@NotNull ModContainer modContainer, @NotNull Screen parent) {
                     return new ConcentrationConfigScreen(Component.literal(ConcentrationConstants.MOD_NAME), parent) {
 
                         @Override
