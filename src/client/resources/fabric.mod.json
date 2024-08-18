@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "concentration",
+  "version": "${version}",
+  "name": "Concentration",
+  "description": "Add borderless fullscreen support for minecraft",
+  "authors": [
+    "DeeChael"
+  ],
+  "contact": {
+    "sources": "https://github.com/DeeChael/Concentration"
+  },
+  "license": "MIT",
+  "icon": "logo.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "net.deechael.concentration.fabric.ConcentrationFabric"
+    ],
+    "modmenu" : [
+      "net.deechael.concentration.fabric.compat.ModMenuCompat"
+    ]
+  },
+  "mixins": [
+    "concentration.mixins.json",
+    "concentration.fabric.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "*",
+    "fabric-api": "*",
+    "minecraft": "24w33a",
+    "java": ">=21"
+  },
+  "suggests": {
+    "sodium": ">=0.5.9"
+  }
+}
+  

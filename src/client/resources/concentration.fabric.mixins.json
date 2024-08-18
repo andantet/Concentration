@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.deechael.concentration.fabric.mixin",
+  "refmap": "${mod_id}.refmap.json",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [],
+  "plugin": "net.deechael.concentration.fabric.ConcentrationFabricMixinPlugin",
+  "client": [
+    "SodiumVideoOptionsScreenMixin",
+    "WindowMixin"
+  ],
+  "server": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
+  
